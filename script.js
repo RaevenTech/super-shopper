@@ -1,13 +1,13 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js"
-import { getDatabase, ref, push, onValue } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js"
+import { getDatabase, ref, push, onValue, remove } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js"
 
 const appSettings = {
   databaseURL: "https://budgetshopper-d2bab-default-rtdb.europe-west1.firebasedatabase.app/"
 }
 
 const app = initializeApp(appSettings)
-const datatbase = getDatabase(app)
-const shoppingListInDB= ref(datatbase, "shoppingList")
+const database = getDatabase(app)
+const shoppingListInDB= ref(database, "shoppingList")
 
 const inputFieldEL = document.getElementById("input-field")
 const addButtonEL = document.getElementById("add-button")
@@ -27,23 +27,38 @@ addButtonEL.addEventListener("click",function () {
 // =================================================================
 // Fetching item from the DB
 onValue(shoppingListInDB, function(snapshot){
-  let listItemsArray = Object.values(snapshot.val()) // convert DB object into array
+  let itemsArray = Object.entries(snapshot.val()) // convert DB object into array
 
-  shoppingListEl.innerContent = "" // clear old list to display updated list
+  shoppingListEl.innerHTML = "" // clear old list to display updated list
 
-  for(let i =0; i < listItemsArray.length; i++){ // loop through DB to display items on the app
-    let listItem = listItemsArray[i]
-    appendItemToShoppingListEL(listItem)
-    console.log(listItem)
+  for(let i = 0; i < itemsArray.length; i++){ // loop through DB to display items on the app
+    let currentItem = itemsArray[i]
+    let currentItemID = currentItem[0]
+    let currentItemValue = currentItem[1]
+
+    appendItemToShoppingListEL(currentItem)
+
   }
 })
 
 //================================================================
-// functions
+
 function clearInputFieldEl(){
   inputFieldEL.value =""
 }
 
-function appendItemToShoppingListEL(itemValue){
-  shoppingListEl.innerHTML +=`<li class="list-item">${itemValue}</li>`
+function appendItemToShoppingListEL(item){
+  let itemID = item[0]
+  let itemValue = item[1]
+  // append new Element to the list and BD
+  let newListEL = document.createElement("li")
+  newListEL.textContent = itemValue
+
+// remove and Element ot Item from the list and DB
+  newListEL.addEventListener("click",function(){
+    let exactLocationOfItemInDB = ref(database, `shoppingList/${itemID}`)
+    remove(exactLocationOfItemInDB)
+  })
+
+  shoppingListEl.append(newListEL)
 }

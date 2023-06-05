@@ -8,7 +8,7 @@
 html,
 body {
   width: 100%;
-  margin: 1.5em 0em;
+  margin: 0em;
   background-color: #F8F8F8;
 }
 
@@ -41,7 +41,7 @@ body {
   font-size: 1.1rem;
   font-weight: bold;
   border: none;
-  outline: none;
+
   box-shadow: 2px 2px 5px gray;
 }
 
@@ -63,12 +63,13 @@ body {
   max-width: 310px;
   gap: 10px;
   padding: 1em .7em;
-  border: 4px solid #ECBF60;
-  border-radius: 10px;
-  background-color: #D3C292;
+  border-top: 4px solid #ECBF60;
+
+
 }
 
-.list-item {
+ul>li {
+  color: whitesmoke;
   flex-grow: 1;
   text-align: center;
   list-style: none;
