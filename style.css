@@ -17,7 +17,7 @@ body {
   height: 100%;
   max-width: 350px;
   margin: 0em auto;
-  border: 5px solid darkslateblue;
+  border: 5px solid #D44F2E;
   border-radius: 10px;
   overflow: hidden;
   padding: .8em .5em;
@@ -54,4 +54,31 @@ body {
 .addBtn {
   background-color: #F8A63F;
   color: whitesmoke;
+}
+
+.shopping-list-items {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  max-width: 310px;
+  gap: 10px;
+  padding: 1em .7em;
+  border: 4px solid #ECBF60;
+  border-radius: 10px;
+  background-color: #D3C292;
+}
+
+.list-item {
+  flex-grow: 1;
+  text-align: center;
+  list-style: none;
+  padding: .5em .8em;
+  border-radius: 10px;
+  margin-top: .1em;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border: none;
+  outline: none;
+  box-shadow: 2px 2px 5px rgb(110, 110, 110);
+  background-color: #6EB0AF;
 }
