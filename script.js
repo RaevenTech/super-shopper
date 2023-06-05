@@ -18,8 +18,12 @@ const shoppingListEl = document.getElementById("shopping-list")
 addButtonEL.addEventListener("click",function () {
   let inputValue = inputFieldEL.value
 
-  push(shoppingListInDB, inputValue)  // add to the DB and shopping list
-
+    if(inputValue === ""){
+      inputValue = "add item"
+    } else {
+      push(shoppingListInDB, inputValue)  // add to the DB and shopping list
+    }
+ 
   clearInputFieldEl() //clear input filed after adding item to the list
   
 })
@@ -27,18 +31,23 @@ addButtonEL.addEventListener("click",function () {
 // =================================================================
 // Fetching item from the DB
 onValue(shoppingListInDB, function(snapshot){
-  let itemsArray = Object.entries(snapshot.val()) // convert DB object into array
+  if(snapshot.exists()){
+    let itemsArray = Object.entries(snapshot.val()) // convert DB object into array
 
-  shoppingListEl.innerHTML = "" // clear old list to display updated list
-
-  for(let i = 0; i < itemsArray.length; i++){ // loop through DB to display items on the app
-    let currentItem = itemsArray[i]
-    let currentItemID = currentItem[0]
-    let currentItemValue = currentItem[1]
-
-    appendItemToShoppingListEL(currentItem)
-
+    shoppingListEl.innerHTML = "" // clear old list to display updated list
+  
+    for(let i = 0; i < itemsArray.length; i++){ // loop through DB to display items on the app
+      let currentItem = itemsArray[i]
+      let currentItemID = currentItem[0]
+      let currentItemValue = currentItem[1]
+  
+      appendItemToShoppingListEL(currentItem)
+  
+    }
+  } else {
+    shoppingListEl.innerHTML = "No items here... yet."
   }
+
 })
 
 //================================================================

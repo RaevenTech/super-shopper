@@ -1,6 +1,4 @@
-*,
-*::before,
-*::after {
+* {
   box-sizing: border-box;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
@@ -10,6 +8,7 @@ body {
   width: 100%;
   margin: 0em;
   background-color: #F8F8F8;
+  user-select: none;
 }
 
 .container {
@@ -41,7 +40,6 @@ body {
   font-size: 1.1rem;
   font-weight: bold;
   border: none;
-
   box-shadow: 2px 2px 5px gray;
 }
 
@@ -52,8 +50,13 @@ body {
 }
 
 .addBtn {
-  background-color: #F8A63F;
+  background-color: #fa8f0c;
   color: whitesmoke;
+}
+
+.addBtn:hover {
+  background-color: #F8A63F;
+  cursor: pointer;
 }
 
 .shopping-list-items {
@@ -81,5 +84,10 @@ ul>li {
   border: none;
   outline: none;
   box-shadow: 2px 2px 5px rgb(110, 110, 110);
+  background-color: #299e9c;
+}
+
+ul>li:hover {
   background-color: #6EB0AF;
+  cursor: pointer;
 }
