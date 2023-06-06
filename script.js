@@ -30,7 +30,7 @@ addButtonEL.addEventListener("click",function () {
 
 // =================================================================
 // Fetching item from the DB
-onValue(shoppingListInDB, function(snapshot){
+onValue(shoppingListInDB, function(snapshot){ // onValue listens for changes on the DB and runs every time ther is a change
   if(snapshot.exists()){
     let itemsArray = Object.entries(snapshot.val()) // convert DB object into array
 
