@@ -64,7 +64,7 @@ function appendItemToShoppingListEL(item){
   newListEL.textContent = itemValue
 
 // remove and Element ot Item from the list and DB
-  newListEL.addEventListener("click",function(){
+  newListEL.addEventListener("dblclick",function(){
     let exactLocationOfItemInDB = ref(database, `shoppingList/${itemID}`)
     remove(exactLocationOfItemInDB)
   })
